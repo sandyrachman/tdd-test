@@ -1,21 +1,29 @@
-const Money = require('./money')
+const Money = require("./money");
 
 class Portfolio {
-    constructor() {
-        this.moneys = [];
-    }
+  constructor() {
+    this.moneys = [];
+  }
 
-    add(...moneys) {
-        this.moneys = this.moneys.concat(moneys);
-    }
+  add(...moneys) {
+    this.moneys = this.moneys.concat(moneys);
+  }
 
-    evaluate(currency) {
-        let total = this.moneys.reduce( (sum, money) => {
-            return sum + money.amount;
-        }, 0);
+  evaluate(currency) {
+    let total = this.moneys.reduce((sum, money) => {
+      return sum + this.convert(money, currency);
+    }, 0);
 
-        return new Money(total, currency);
+    return new Money(total, currency);
+  }
+
+  convert(money, currency) {
+    let eurToUsd = 1.2;
+    if (money.currency === currency) {
+      return money.amount;
     }
+    return money.amount * eurToUsd;
+  }
 }
 
-module.exports = Portfolio
+module.exports = Portfolio;
