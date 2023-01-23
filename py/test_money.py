@@ -3,12 +3,7 @@ from money import Money
 from portfolio import Portfolio
 
 class TestMoney(unittest.TestCase):
-    def testMultiplicationInDollar(self):
-        fiveDollars = Money(5, "USD")
-        tenDollars = Money(10, "USD")
-        self.assertEqual(tenDollars, fiveDollars.times(2))
-
-    def testMultiplicationInEuro(self):
+    def testMultiplication(self):
         tenEuros = Money(10, 'EUR')
         twentyEuros = Money(20, 'EUR')
         self.assertEqual(twentyEuros, tenEuros.times(2))
